@@ -426,6 +426,309 @@ body {
   outline-offset: 2px;
 }
 
+/* Triad Explorer */
+.triad-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(26, 22, 18, 0.08);
+}
+
+.triad-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: var(--color-ink);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.triad-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  text-align: center;
+  margin-top: -0.75rem;
+}
+
+.triad-empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--color-muted);
+  font-style: italic;
+  background: var(--color-paper);
+  border: 1px dashed rgba(26, 22, 18, 0.15);
+  border-radius: 16px;
+}
+
+/* Triad Neck Shell */
+.triad-neck-shell {
+  background: linear-gradient(135deg, #0a0515 0%, #1c0a28 100%);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 8px 24px rgba(26, 22, 18, 0.2);
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.triad-neck-bg {
+  fill: #150a1e;
+  stroke: rgba(255, 255, 255, 0.02);
+}
+
+.triad-string {
+  stroke: var(--color-string);
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+.triad-fret {
+  stroke: var(--color-fret-wire);
+  stroke-width: 1.5;
+  opacity: 0.5;
+}
+
+.triad-nut {
+  stroke: #d4cfc5;
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.6;
+}
+
+/* Fret Markers */
+.fret-marker {
+  fill: rgba(255, 255, 255, 0.15);
+}
+
+/* Triad Notes with Animation */
+.triad-note-group {
+  animation: fadeInScale 400ms ease-out forwards;
+  opacity: 0;
+  transform-origin: center;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.triad-note-dot {
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 2;
+}
+
+.triad-note-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  fill: var(--color-cream);
+  pointer-events: none;
+  text-anchor: middle;
+}
+
+.triad-string-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  fill: rgba(250, 246, 240, 0.4);
+  text-anchor: end;
+}
+
+/* Triad Controls */
+.triad-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem 2rem;
+  background: var(--color-paper);
+  border: 1px solid rgba(26, 22, 18, 0.08);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(26, 22, 18, 0.04),
+    0 8px 24px rgba(26, 22, 18, 0.06);
+}
+
+/* Progress Section */
+.triad-progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.triad-position-indicator {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-ink-soft);
+  text-align: center;
+}
+
+.triad-progress-bar {
+  height: 6px;
+  background: rgba(26, 22, 18, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.triad-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-amber) 0%, var(--color-amber-glow) 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* Navigation Controls */
+.triad-nav-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.triad-btn {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: 1.5px solid rgba(26, 22, 18, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--color-cream);
+  color: var(--color-ink);
+}
+
+.triad-btn:hover:not(:disabled) {
+  border-color: var(--color-amber);
+  background: var(--color-paper);
+  transform: translateY(-1px);
+}
+
+.triad-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.triad-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.triad-btn-play {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  min-width: 100px;
+}
+
+.triad-btn-play:hover:not(:disabled) {
+  background: var(--color-amber-glow);
+  border-color: var(--color-amber-glow);
+}
+
+/* Speed Section */
+.triad-speed-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.triad-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+}
+
+.triad-speed-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.triad-btn-speed {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+.triad-btn-speed.active {
+  background: var(--color-amber);
+  border-color: var(--color-amber);
+  color: var(--color-ink);
+}
+
+/* Audio Section */
+.triad-audio-section {
+  display: flex;
+  justify-content: center;
+}
+
+.triad-audio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  user-select: none;
+}
+
+.triad-audio-label:hover {
+  color: var(--color-ink);
+}
+
+.triad-audio-checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--color-amber);
+}
+
+.triad-audio-checkbox:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Responsive for Triad Explorer */
+@media (max-width: 720px) {
+  .triad-controls {
+    padding: 1.25rem 1rem;
+  }
+
+  .triad-nav-controls {
+    flex-wrap: wrap;
+  }
+
+  .triad-btn {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .triad-btn-play {
+    flex-basis: 100%;
+  }
+
+  .triad-speed-section {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .triad-speed-group {
+    width: 100%;
+  }
+
+  .triad-btn-speed {
+    flex: 1;
+  }
+}
+
 /* Print styles */
 @media print {
   body {
@@ -440,5 +743,9 @@ body {
     break-inside: avoid;
     box-shadow: none;
     border: 1px solid #ccc;
+  }
+
+  .triad-explorer {
+    display: none;
   }
 }

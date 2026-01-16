@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { ChordControls } from './components/ChordControls'
 import { ShapeCard } from './components/ShapeCard'
+import { TriadExplorer } from './components/TriadExplorer'
 import { NOTE_OPTIONS } from './data/notes'
 import { CHORD_QUALITIES, QUALITY_MAP } from './data/chordQualities'
 import { buildChordShapes } from './utils/chordUtils'
@@ -62,6 +63,8 @@ export default function App() {
           <p className="empty-state">No shapes available for this chord yet.</p>
         )}
       </section>
+
+      <TriadExplorer root={root} quality={quality} audioEngine={engineRef.current} />
     </div>
   )
 }
