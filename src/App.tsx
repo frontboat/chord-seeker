@@ -6,11 +6,13 @@ import { ProgressionViewer } from './components/ProgressionViewer'
 import { ScaleExplorer } from './components/ScaleExplorer'
 import { CircleOfFifths } from './components/CircleOfFifths'
 import { ChordAnalyzer } from './components/ChordAnalyzer'
+import { SongBuilder } from './components/SongBuilder'
 import { DarkModeToggle } from './components/DarkModeToggle'
 import { NOTE_OPTIONS } from './data/notes'
 import { CHORD_QUALITIES, QUALITY_MAP } from './data/chordQualities'
 import { buildChordShapes } from './utils/chordUtils'
 import type { ChordQuality, NoteId, RuntimeChordShape } from './types/music'
+import type { AnimationSpeed, ChordProgression } from './types/progression'
 import { ChordAudioEngine, orderNotesForStrum } from './audio/engine'
 
 export default function App() {
@@ -22,6 +24,9 @@ export default function App() {
     const saved = localStorage.getItem('darkMode')
     return saved ? JSON.parse(saved) : false
   })
+  const [songBuilderOpen, setSongBuilderOpen] = useState(false)
+  const [songBuilderProgression, setSongBuilderProgression] = useState<ChordProgression | null>(null)
+  const [songBuilderSpeed, setSongBuilderSpeed] = useState<AnimationSpeed>('medium')
   const engineRef = useRef<ChordAudioEngine | null>(null)
 
   if (!engineRef.current) {
@@ -67,6 +72,16 @@ export default function App() {
     setProgressionChordQuality(chordQuality)
   }
 
+  const handleSongBuilderOpen = (progression: ChordProgression, speed: AnimationSpeed) => {
+    setSongBuilderProgression(progression)
+    setSongBuilderSpeed(speed)
+    setSongBuilderOpen(true)
+  }
+
+  const handleSongBuilderClose = () => {
+    setSongBuilderOpen(false)
+  }
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -107,6 +122,7 @@ export default function App() {
         root={root}
         quality={quality}
         onChordChange={handleProgressionChordChange}
+        onSongBuilderOpen={handleSongBuilderOpen}
       />
 
       <ScaleExplorer
@@ -124,6 +140,14 @@ export default function App() {
       />
 
       <ChordAnalyzer />
+
+      <SongBuilder
+        isOpen={songBuilderOpen}
+        onClose={handleSongBuilderClose}
+        progression={songBuilderProgression}
+        rootNote={root}
+        speed={songBuilderSpeed}
+      />
     </div>
   )
 }

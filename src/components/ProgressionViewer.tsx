@@ -8,6 +8,7 @@ interface Props {
   root: NoteId
   quality: ChordQuality
   onChordChange?: (chordIndex: number, chordRoot: NoteId, chordQuality: ChordQuality) => void
+  onSongBuilderOpen?: (progression: ChordProgression, speed: AnimationSpeed) => void
 }
 
 const SPEED_INTERVALS: Record<AnimationSpeed, number> = {
@@ -16,7 +17,7 @@ const SPEED_INTERVALS: Record<AnimationSpeed, number> = {
   fast: 1000
 }
 
-export function ProgressionViewer({ root, quality, onChordChange }: Props) {
+export function ProgressionViewer({ root, quality, onChordChange, onSongBuilderOpen }: Props) {
   const [selectedProgression, setSelectedProgression] = useState<ChordProgression | null>(null)
   const [currentChordIndex, setCurrentChordIndex] = useState(0)
   const [animationState, setAnimationState] = useState<AnimationState>('paused')
@@ -177,6 +178,15 @@ export function ProgressionViewer({ root, quality, onChordChange }: Props) {
                 ))}
               </div>
             </div>
+
+            {onSongBuilderOpen && (
+              <button
+                className="prog-btn prog-btn-song-builder"
+                onClick={() => onSongBuilderOpen(selectedProgression!, speed)}
+              >
+                Song Builder
+              </button>
+            )}
           </div>
         </>
       )}
