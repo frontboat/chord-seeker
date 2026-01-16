@@ -1,0 +1,281 @@
+:root {
+  font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #fef8ff;
+  background-color: #030008;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(255, 89, 228, 0.25), transparent 45%),
+    radial-gradient(circle at 25% 25%, rgba(85, 238, 255, 0.18), transparent 40%),
+    #030008;
+  color: #fefefe;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.eyebrow {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #9d8dff;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 4vw, 3.9rem);
+  margin: 0 0 1rem;
+  color: #f2f7ff;
+}
+
+.lead {
+  margin: 0 auto;
+  max-width: 640px;
+  color: #c9c6ff;
+  font-size: 1.1rem;
+}
+
+.control-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(16, 4, 32, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+}
+
+.control label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: #d8d5ff;
+}
+
+.control select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(8, 2, 20, 0.9);
+  color: #f6f4ff;
+  font-size: 1rem;
+}
+
+.quality-panel {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 18px;
+  border: 1px solid;
+  background: rgba(10, 2, 28, 0.85);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.quality-panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 2rem;
+}
+
+.quality-panel p {
+  margin: 0;
+  color: #d1cff9;
+}
+
+.interval-list {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.interval-list span {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.9rem;
+}
+
+.shape-grid {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.75rem;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #a99fd4;
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.shape-card {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 1.5rem;
+  background: rgba(9, 2, 28, 0.9);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.shape-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.shape-tag {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: #ffc9ff;
+}
+
+.shape-card h3 {
+  margin: 0.2rem 0;
+}
+
+.shape-description {
+  margin: 0;
+  color: #bfb9e8;
+  font-size: 0.95rem;
+}
+
+.play-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.8rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: linear-gradient(120deg, #ff5ecf, #7bf9ff);
+  color: #050013;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(127, 253, 255, 0.3);
+}
+
+.fretboard-shell {
+  background: rgba(5, 0, 14, 0.7);
+  border-radius: 16px;
+  padding: 0.5rem;
+}
+
+.fretboard-bg {
+  fill: #070014;
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.fretboard-string {
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 2;
+}
+
+.fretboard-fret {
+  stroke: rgba(255, 255, 255, 0.15);
+}
+
+.fretboard-nut {
+  stroke: #f6f0ff;
+}
+
+.finger-dot {
+  stroke: rgba(255, 255, 255, 0.4);
+  stroke-width: 1.2;
+}
+
+.finger-dot.root {
+  stroke-width: 2;
+}
+
+.finger-label {
+  font-size: 0.7rem;
+  fill: #fefefe;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+.open-indicator,
+.mute-indicator {
+  font-size: 0.9rem;
+  fill: #fefefe;
+  font-weight: 600;
+}
+
+.fret-label {
+  font-size: 0.75rem;
+  fill: rgba(255, 255, 255, 0.7);
+}
+
+.instructions {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.instructions-title {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+  color: #e0dcff;
+}
+
+.instructions ul {
+  margin: 0;
+  padding-left: 1rem;
+  color: #bcb7dc;
+  font-size: 0.92rem;
+}
+
+.instructions li + li {
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 720px) {
+  .shape-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .play-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .quality-panel {
+    flex-direction: column;
+  }
+}
