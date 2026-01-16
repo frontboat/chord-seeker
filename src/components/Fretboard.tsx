@@ -25,7 +25,7 @@ export function Fretboard({ shape }: Props) {
   const height = margin.top + margin.bottom + (GUITAR_STRINGS.length - 1) * stringGap
 
   const positionForFret = (fret: number) =>
-    margin.left + (fret - shape.fretWindow.start + 0.5) * fretGap
+    margin.left + (fret - shape.fretWindow.start - 0.5) * fretGap
 
   const positionForString = (stringId: GuitarString) => {
     const index = GUITAR_STRINGS.indexOf(stringId)
