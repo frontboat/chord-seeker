@@ -1,9 +1,11 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ChordControls } from './components/ChordControls'
 import { ShapeCard } from './components/ShapeCard'
 import { TriadExplorer } from './components/TriadExplorer'
 import { ProgressionViewer } from './components/ProgressionViewer'
 import { ScaleExplorer } from './components/ScaleExplorer'
+import { CircleOfFifths } from './components/CircleOfFifths'
+import { DarkModeToggle } from './components/DarkModeToggle'
 import { NOTE_OPTIONS } from './data/notes'
 import { CHORD_QUALITIES, QUALITY_MAP } from './data/chordQualities'
 import { buildChordShapes } from './utils/chordUtils'
@@ -15,10 +17,28 @@ export default function App() {
   const [quality, setQuality] = useState<ChordQuality>('minor')
   const [progressionChordRoot, setProgressionChordRoot] = useState<NoteId | undefined>()
   const [progressionChordQuality, setProgressionChordQuality] = useState<ChordQuality | undefined>()
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode')
+    return saved ? JSON.parse(saved) : false
+  })
   const engineRef = useRef<ChordAudioEngine | null>(null)
 
   if (!engineRef.current) {
     engineRef.current = new ChordAudioEngine()
+  }
+
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark-mode')
+    } else {
+      document.documentElement.classList.remove('dark-mode')
+    }
+    localStorage.setItem('darkMode', JSON.stringify(isDarkMode))
+  }, [isDarkMode])
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev: boolean) => !prev)
   }
 
   const shapes = useMemo(() => buildChordShapes(root, quality), [root, quality])
@@ -49,8 +69,11 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="app-header">
-        <h1 className="app-title">Chord Seeker</h1>
-        <p className="app-subtitle">Explore guitar chord shapes and voicings</p>
+        <div className="header-content">
+          <h1 className="app-title">Chord Seeker</h1>
+          <p className="app-subtitle">Explore guitar chord shapes and voicings</p>
+        </div>
+        <DarkModeToggle isDark={isDarkMode} onToggle={toggleDarkMode} />
       </header>
 
       <ChordControls
@@ -90,6 +113,13 @@ export default function App() {
         quality={quality}
         syncedRoot={progressionChordRoot}
         syncedQuality={progressionChordQuality}
+      />
+
+      <CircleOfFifths
+        currentRoot={root}
+        currentQuality={quality}
+        onRootChange={handleRootChange}
+        onQualityChange={handleQualityChange}
       />
     </div>
   )
